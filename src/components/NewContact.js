@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TextInputField } from "./Inputs.js";
-import { addContact } from "../contacts.js";
+import { addItem } from "../contacts.js";
 
 function SuccessMsg(props) {
   return (
@@ -39,14 +39,14 @@ class NewContactPage extends Component {
             phone:'',
             address:'',
             city:'',
-            state:'',
+            state1:'',
             zip:'',
             showSuccess: false
         }
     }
 
     closeSuccessMsg () {
-        this.setState({showSuccess: flase})
+        this.setState({showSuccess: false})
     }
 
     submitNewContact () {
@@ -57,10 +57,10 @@ class NewContactPage extends Component {
             phone: this.state.phone,
             address: this.state.address,
             city: this.state.city,
-            state: this.state.state,
+            state1: this.state.state1,
             zip:this.state.zip
         }
-        addContact(newContact)
+        addItem(newContact)
 
         this.setState({showSuccess: true})
         this.resetFormFields()
@@ -73,7 +73,7 @@ class NewContactPage extends Component {
             phone:'',
             address:'',
             city:'',
-            state:'',
+            state1:'',
             zip:''
         })
     }
@@ -88,7 +88,7 @@ class NewContactPage extends Component {
     }
 
     render () {
-        const closeSuccessMSg = this.closeSuccessMsg.bind(this)
+        const closeSuccessMsg = this.closeSuccessMsg.bind(this)
         const successNotification = this.state.showSuccess ? <SuccessMsg closeFn={closeSuccessMsg} /> : null
 
 
@@ -97,7 +97,7 @@ class NewContactPage extends Component {
         const phoneChangeFn = this.updateProperty.bind(this, 'phone')
         const addressChangeFn = this.updateProperty.bind(this, 'address')
         const cityChangeFn = this.updateProperty.bind(this, 'city')
-        const stateChangeFn = this.updateProperty.bind(this, 'state')
+        const stateChangeFn = this.updateProperty.bind(this, 'state1')
         const zipChangeFn = this.updateProperty.bind(this, 'zip')
 
         const submitFn = this.submitNewContact.bind(this)
@@ -107,12 +107,12 @@ class NewContactPage extends Component {
             <section>
                 {successNotification}
                 <TextInputField label="Contact Name" value={this.state.name} placeholderTxt = "Contact Name" onChange={nameChangeFn} />
-                <TextInputField label="email" value={this.state.name} placeholderTxt = "e-mail" onChange={emailChangeFn} />
-                <TextInputField label="phone" value={this.state.name} placeholderTxt = "phone" onChange={phoneChangeFn} />
-                <TextInputField label="address" value={this.state.name} placeholderTxt = "address" onChange={addressChangeFn} />
-                <TextInputField label="city" value={this.state.name} placeholderTxt = "city" onChange={cityChangeFn} />
-                <TextInputField label="state" value={this.state.name} placeholderTxt = "state" onChange={stateChangeFn} />
-                <TextInputField label="zip" value={this.state.name} placeholderTxt = "zip" onChange={zipChangeFn} />
+                <TextInputField label="email" value={this.state.email} placeholderTxt = "e-mail" onChange={emailChangeFn} />
+                <TextInputField label="phone" value={this.state.phone} placeholderTxt = "phone" onChange={phoneChangeFn} />
+                <TextInputField label="address" value={this.state.address} placeholderTxt = "address" onChange={addressChangeFn} />
+                <TextInputField label="city" value={this.state.city} placeholderTxt = "city" onChange={cityChangeFn} />
+                <TextInputField label="state1" value={this.state.state1} placeholderTxt = "state" onChange={stateChangeFn} />
+                <TextInputField label="zip" value={this.state.zip} placeholderTxt = "zip" onChange={zipChangeFn} />
                 <ActionBar onSubmit={submitFn} onReset={resetFn} />
                 </section>
         )

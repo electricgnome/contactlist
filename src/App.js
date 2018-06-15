@@ -4,7 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar.js'
 import HomePage from './components/HomePage.js'
 import ContactList from './components/ContactList.js'
-import NewContact from './components/NewContact.js'
+import NewContactPage from './components/NewContact.js'
 
 
 class App extends Component {
@@ -37,7 +37,7 @@ class App extends Component {
     if (this.state.route === '/contacts') {
       pageComponent = <ContactList />
     } else if (this.state.route === '/new-contact') {
-      pageComponent = <newContact />
+      pageComponent = <NewContactPage />
     }
 
 
