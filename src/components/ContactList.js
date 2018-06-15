@@ -31,6 +31,37 @@ class ContactList extends Component {
         }
     }
 
-updateSearchTxt (evt)
-
+updateSearchTxt (evt) {
+    const newText = evt.currrentTarget.value
+        this.setState({searchTxt: newText})
 }
+
+    isMatch(searchTxt, item) {
+        const lcSearchTxt = searchTxt.toLowerCase()
+        const lcName = item.name.loLowerCase()
+
+        return lcName.includes(lcSearchTxt)
+    }
+
+    render () {
+        const updateSearchTxt = this.updateSearchTxt.bind(this)
+        const matchFn = this.isMatch.bind(null, this.state.searchTxt)
+        const filterdItems = this.state.contacts.filter(matchFn)
+
+        let bodyComponent = <ContactTable contacts = {filterdItems} />
+        if (filterdItems.lenght === 0 ) {
+            bodyComponent = <NoContactsFound />
+        }
+
+        return (
+            <section>
+                <SearchInput searchTxt={thos.state.searchTxt} updateSearchTxt={updateSearchTxt} />
+                <div className='push-down'>
+                    {bodyComponent}
+                    </div>
+                    </section>
+        )
+    }
+}
+
+export default ContactList
